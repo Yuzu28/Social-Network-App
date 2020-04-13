@@ -11,38 +11,108 @@ const User = require('../../models/Users');
 
 // @route    POST api/posts
 // @desc     Create a post
-// @access   Private -- have to be log in to use it
-router.post('/', [auth, [
-    check('text', 'Text is required').not().isEmpty()
-]
-
-],
-async (req, res) =>{
-    //error checking
-    const errors = validationResult(req);
-      if (!errors.isEmpty()){
-        return res.status(400).json({errors: errors.array()});
+// @access   Private
+router.post('/',[auth,
+      [
+        check('text', 'Text is required').not().isEmpty()
+      ]
+    ],
+    async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
       }
-    
-    try {
+  
+      try {
         const user = await User.findById(req.user.id).select('-password');
-
+  
         const newPost = new Post({
-            text: req.body.text,
-            name: user.name,
-            avatar: user.avatar,
-            user: req.user.id
-        }) 
-
+          text: req.body.text,
+          name: user.name,
+          avatar: user.avatar,
+          user: req.user.id
+        });
+  
         const post = await newPost.save();
+  
         res.json(post);
-
-        
-    } catch (err){
+      } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server Error')
-;    }
+        res.status(500).send('Server Error');
+      }
+    }
+  );
+  
+  // @route    GET api/posts
+  // @desc     Get all posts
+  // @access   Private
+  router.get('/', auth, async (req, res) => {
+    try {
+      const posts = await Post.find().sort({ date: -1 });
+      res.json(posts);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
+  
+    //********************************************************************************************** */
 
-}) ;
+  // @route    GET api/posts/:id
+  // @desc     Get post by ID
+  // @access   Private
 
-module.exports = router;
+  //get posts by ID
+  router.get('/:id', auth, async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+  
+      if (!post) {
+        return res.status(404).json({ msg: 'Post not found' });
+      }
+  
+      res.json(post);
+    } catch (err) {
+      console.error(err.message);
+      if (err.kind === 'ObjectId') {
+        return res.status(404).json({ msg: 'Post not found' });
+      }
+      res.status(500).send('Server Error');
+    }
+  });
+  
+  // @route    DELETE api/posts/:id
+  // @desc     Delete a post
+  // @access   Private
+
+  //delete post by ID created by user
+  router.delete('/:id', auth, async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+  
+      if (!post) {
+        return res.status(404).json({ msg: 'Post not found' });
+      }
+  
+      // Check user
+      if (post.user.toString() !== req.user.id) {
+        return res.status(401).json({ msg: 'User not authorized' });
+      }
+  
+      await post.remove();
+  
+      res.json({ msg: 'Post removed' });
+    } catch (err) {
+      console.error(err.message);
+      if (err.kind === 'ObjectId') {
+        return res.status(404).json({ msg: 'Post not found' });
+      }
+      res.status(500).send('Server Error');
+    }
+  });
+
+//********************************************************************************************** */
+
+  
+  
+  module.exports = router;
