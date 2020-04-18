@@ -26,11 +26,6 @@ export default function(state = initialState, action) {
       };
     case CLEAR_PROFILE:
     default:
-    return {
-        ...state,
-        profile: null,
-        loading: false
-      };
-      return state;
-  }
+    return state;
+}
 }
