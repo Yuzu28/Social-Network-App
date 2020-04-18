@@ -37,7 +37,9 @@ export default function(state = initialState, action){
                 ...state,
                 ...payload,
                 isAuthenticated: true,
-                loading: false //got the respose and is loaded
+                loading: false, //got the respose and is loaded
+                user: payload
+
             }
         
         case REGISTER_FAIL:
