@@ -18,6 +18,8 @@ export const PROFILE_ERROR = 'PROFIL_ERROR';
 
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 
+export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
+
 
 
 
