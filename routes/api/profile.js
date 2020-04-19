@@ -174,7 +174,7 @@ router.get('/me', auth, async (req, res) => {
           //remove profile
           await Profile.findOneAndRemove({ user: req.user.id});
           //Remove user
-          await Profile.findOneAndRemove({ _id: req.user.id});
+          await User.findOneAndRemove({ _id: req.user.id});
 
           res.json({ msg: 'User deleted'});
 
