@@ -29,7 +29,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         error: payload,
-        loading: false
+        loading: false,
+        profile: null, //fix issues with guest users
       };
     case CLEAR_PROFILE:
     default:
