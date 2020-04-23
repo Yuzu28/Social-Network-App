@@ -16,6 +16,7 @@ const Posts = ({ getPosts, post: { posts, loading }})=> {
         <Spinner />
       ) : (
         <Fragment>
+          <div className="margins">
           <h1 className='large text-primary'>Posts</h1>
           <p className='lead'>
             <i className='fa fa-user' /> Welcome to the community
@@ -27,6 +28,7 @@ const Posts = ({ getPosts, post: { posts, loading }})=> {
             {posts.map(post => (
               <PostItem key={post._id} post={post} />
             ))}
+          </div>
           </div>
         </Fragment>
       );
