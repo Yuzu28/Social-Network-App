@@ -16,6 +16,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
           <Spinner />
         ) : (
           <Fragment>
+            <div className="margins">
             <h1 className='large text-primary'>Users</h1>
             <p className='lead'>
               <i className='fa fa-connectdevelop' /> Browse and connect with
@@ -29,6 +30,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
               ) : (
                 <h4>No profiles found...</h4>
               )}
+            </div>
             </div>
           </Fragment>
         )}

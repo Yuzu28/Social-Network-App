@@ -22,9 +22,10 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
+      <div className="margins">
       <h1 className='large text-primary'>Dashboard</h1>
       <p className='lead'>
-        <i className='fas fa-user' /> Welcome {user && user.name}
+        <i className='fa fa-user' /> Welcome {user && user.name}
       </p>
       {profile !== null ? (
         <Fragment>
@@ -52,6 +53,7 @@ const Dashboard = ({
           </div>
         </Fragment>
       )}
+      </div>
     </Fragment>
   );
 };

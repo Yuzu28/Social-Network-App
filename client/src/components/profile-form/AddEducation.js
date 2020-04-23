@@ -23,6 +23,7 @@ const AddEducation = ({ addEducation, history }) => {
 
   return (
     <Fragment>
+      <div className="margins">
       <h1 className="large text-primary">Add Your Education</h1>
       <p className="lead">
         <i className="fas fa-code-branch" /> Add any school or bootcamp that you
@@ -106,6 +107,7 @@ const AddEducation = ({ addEducation, history }) => {
           Go Back
         </Link>
       </form>
+      </div>
     </Fragment>
   );
 };

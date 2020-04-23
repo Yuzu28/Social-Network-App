@@ -16,11 +16,12 @@ const Profile = ({getProfileById, profile: { profile, loading }, auth, match}) =
 
     return (
       <Fragment>
+        <div className="margins">
         {profile === null || loading ? (
           <Spinner />
         ) : (
           <Fragment>
-            <Link to='/profiles' className='btn btn-light'>
+            <Link to='/profiles' className='btn btn-success'>
               Back To Profiles
             </Link>
             {auth.isAuthenticated &&
@@ -71,6 +72,7 @@ const Profile = ({getProfileById, profile: { profile, loading }, auth, match}) =
 
           </Fragment>
         )}
+        </div>
       </Fragment>
     );
   };
