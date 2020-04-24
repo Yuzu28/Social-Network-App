@@ -58,7 +58,7 @@ return (
       </p>
       <small>* = required field</small>
       <form className='form' onSubmit={e => onSubmit(e)}>
-        {/* <div className='form-group'>
+        <div className='form-group'>
           <select name='status' value={status} onChange={e => onChange(e)}>
             <option value='0'>* Select Professional Status</option>
             <option value='Developer'>Developer</option>
@@ -73,7 +73,7 @@ return (
           <small className='form-text'>
             Give us an idea of where you are at in your career
           </small>
-        </div> */}
+        </div>
         {/* <div className='form-group'>
           <input
             type='text'
