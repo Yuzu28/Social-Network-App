@@ -15,4 +15,17 @@ Users can make their own profile, start a post, like/dislike other posts, and le
 <img src="https://github.com/Yuzu28/Social-Network-App/blob/master/client/public/posts.gif"  width="80%" height="80%">
 </p>
 
+## Technology Used
+
+| Languages | 
+| ------------- |
+| HTML  | 
+| CSS| 
+| Javascript  | 
+| MongoDB |
+| Node.js |
+| Express|
+| React | 
+| Rudux| 
+
 
