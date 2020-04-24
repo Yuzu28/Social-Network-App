@@ -46,12 +46,12 @@ const ProfileForm = ({
   }, [loading, getCurrentProfile, profile]);
 
   const {
-    company,
-    website,
+    // company,
+    // website,
     location,
-    status,
+    // status,
     skills,
-    githubusername,
+    // githubusername,
     bio,
     twitter,
     facebook,
